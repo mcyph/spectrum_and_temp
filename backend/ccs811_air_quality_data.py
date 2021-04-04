@@ -7,7 +7,7 @@ import busio
 import adafruit_ccs811
 
 i2c = busio.I2C(board.SCL, board.SDA)
-ccs811 = adafruit_ccs811.CCS811(i2c)
+ccs811 = adafruit_ccs811.CCS811(i2c, 0x77)
 
 
 def get_values():
