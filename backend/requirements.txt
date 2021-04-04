@@ -1,0 +1,5 @@
+smbus2
+fastapi
+adafruit-circuitpython-ccs811
+adafruit-circuitpython-bme280
+
