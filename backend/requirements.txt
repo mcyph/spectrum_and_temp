@@ -1,5 +1,6 @@
 smbus2
 fastapi
+uvicorn[standard]
 adafruit-circuitpython-ccs811
 adafruit-circuitpython-bme280
 

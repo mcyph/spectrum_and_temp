@@ -51,7 +51,6 @@ def readReg(addr):
         time.sleep(0.05)  # Polling delay to avoid drowning Slave
 
     data = i2c.read_byte_data(I2C_ADDR, READ_REG)  # Finally pick up the data
-
     return data
 
 
@@ -109,7 +108,6 @@ def IEEE754toFloat(valArray):
             accum = accum + bitfrac
 
     floatVal = sign * accum * (2 ** (exponent - 127))
-
     return floatVal
 
 
@@ -128,7 +126,6 @@ def setDEVSEL(device):
         return (False)
 
     writeReg(0x4f, mode)
-
     return True
 
 
@@ -145,7 +142,7 @@ def reorderData(unsortedData):
         sortedData[pairs[1] - 1] = unsortedData[
             pairs[0] - 1]  # -1 is to correct for 1st list member being in position 0
 
-    return (sortedData)
+    return sortedData
 
 
 # ---- Spec functions -----
@@ -203,7 +200,7 @@ def temperatures():
         setDEVSEL(device)
         temp = readReg(0x06)
         temps.append(temp)
-    return (temps)
+    return temps
 
 
 # Set master blue LED state (device 1 on IND line)
@@ -338,8 +335,7 @@ def readRAW():
     # now reorder the data to be in monotonic frequency order
     output = reorderData(RAWValues)
     print(output)
-
-    return (output)
+    return output
 
 
 # Read all 18 calibrated values together
@@ -366,6 +362,5 @@ def readCAL():
     # now reorder the data to be in monotonic frequency order
     output = reorderData(CALValues)
     print(output)
-
-    return (output)
+    return output
 
