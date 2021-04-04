@@ -1,12 +1,12 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from _thread import start_new_thread, allocate_lock
 
-import as7265x_spectral_data
-import bme280_temp_humidity_data
-import ccs811_air_quality_data
+import logger
 
 
 app = FastAPI()
+lock = allocate_lock()
 
 origins = [
     "http://localhost",
@@ -24,11 +24,15 @@ app.add_middleware(
 
 @app.get("/")
 def index():
-    return {
-        "spectral_raw": as7265x_spectral_data.get_raw_values(),
-        "spectral_calibrated": as7265x_spectral_data.get_calibrated_values(),
-        "temp_humidity": bme280_temp_humidity_data.get_values(),
-        "air_quality": ccs811_air_quality_data.get_values()
-    }
+    with lock:
+        return logger.get_last_values()
 
+
+def from_thread():
+    while True:
+        with lock:
+            logger.poll()
+
+
+start_new_thread(from_thread, ())
 
