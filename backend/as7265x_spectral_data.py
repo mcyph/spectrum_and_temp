@@ -61,4 +61,5 @@ spectrometer.init()
 spectrometer.hwVersion()
 print(get_raw_values())
 print(get_calibrated_values())
-
+spectrometer.setIntegrationTime(255)
+spectrometer.setGain(3)
