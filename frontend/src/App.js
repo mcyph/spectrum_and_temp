@@ -35,7 +35,7 @@ function App() {
   const spectralCalibrated = allData ? allData['spectral_calibrated'] : [];
   const lastSpectralCalibrated = spectralCalibrated[spectralCalibrated.length-1] || null;
 
-  alert(JSON.stringify(spectralCalibrated));
+  alert(JSON.stringify(allData));
 
   return <>
     <ThemeProvider theme={theme}>
