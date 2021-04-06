@@ -25,7 +25,7 @@ num_times = [0]
 def get_last_values():
     out = {}
     for k in most_recent_queues:
-        out[k] = [most_recent_queues[k][-1]]
+        out[k] = [most_recent_queues[k][0]]
     return out
 
 
