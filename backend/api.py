@@ -48,13 +48,13 @@ async def websocket_endpoint(websocket: WebSocket):
         del queues[get_ident()]
 
 
-async def from_thread():
+def from_thread():
     # Poll from sensors
     while True:
         logger.poll()
         for id, q in queues.items():
             # Tell each websocket to update listeners
-            await q.put(None)
+            q.put_nowait(None)
 
 
-get_event_loop().create_task(from_thread())
+start_new_thread(from_thread, ())
