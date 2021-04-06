@@ -28,7 +28,7 @@ class SpectralDataHistory extends React.Component {
     }
     const out = [];
     for (const k in valuesOut) {
-      out.push([k.split('_')[0], valuesOut[k], k.split('_')[2]])
+      out.push([k, valuesOut[k], k.split('_')[2]])
     }
 
     return <>
