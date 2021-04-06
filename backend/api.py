@@ -34,11 +34,15 @@ def last_values():
 async def websocket_endpoint(websocket: WebSocket):
     q = queues[get_ident()] = Queue()
     try:
+        print("ACCEPTING WEBSOCKET..")
         await websocket.accept()
+        print("WEBSOCKET ACCEPTED - SENDING TIME SERIES!")
         await websocket.send_json(logger.get_time_series())
 
         while True:
+            print("GETTING FROM QUEUE...")
             q.get()
+            print("SENDING TO SOCKET")
             await websocket.send_json(logger.get_last_values())
     finally:
         del queues[get_ident()]
