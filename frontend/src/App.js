@@ -8,7 +8,7 @@ import './App.css';
 import SpectralDataHistory from "./pages/SpectralDataHistory";
 import CurrentSpectralData from "./pages/CurrentSpectralData";
 
-const socket = new WebSocket("ws://localhost:8000/last_values_ws");
+let socket = new WebSocket("ws://localhost:8000/last_values_ws");
 
 function App() {
   // Use a dark theme
@@ -31,6 +31,13 @@ function App() {
       }
       setAllData(newData);
     }
+  }
+  socket.onclose = function() {
+    socket.close()
+  }
+  socket.onerror = function() {
+    setAllData(null);
+    socket = new WebSocket("ws://localhost:8000/last_values_ws");
   }
 
   const spectralCalibrated = allData ? allData['spectral_calibrated'] : [];
