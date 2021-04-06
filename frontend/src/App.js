@@ -8,6 +8,8 @@ import './App.css';
 import SpectralDataHistory from "./pages/SpectralDataHistory";
 import CurrentSpectralData from "./pages/CurrentSpectralData";
 
+const socket = new WebSocket("ws://localhost:8000/last_values_ws");
+
 function App() {
   // Use a dark theme
   const theme = React.useMemo(
@@ -18,7 +20,6 @@ function App() {
   let [currentTab, setTab] = useState("Spectral Data");
   let [allData, setAllData] = useState(null);
 
-  const socket = new WebSocket("ws://localhost:8000/last_values_ws");
   socket.onmessage = function(event) {
     const data = JSON.parse(event.data);
     if (!allData) {
