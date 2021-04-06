@@ -1,4 +1,4 @@
-from asyncio import Queue
+from asyncio import Queue, get_event_loop
 from fastapi import FastAPI, WebSocket
 from fastapi.middleware.cors import CORSMiddleware
 from _thread import start_new_thread, allocate_lock, get_ident
@@ -48,15 +48,13 @@ async def websocket_endpoint(websocket: WebSocket):
         del queues[get_ident()]
 
 
-def from_thread():
+async def from_thread():
     # Poll from sensors
     while True:
-        with lock:
-            logger.poll()
-            for id, q in queues.items():
-                # Tell each websocket to update listeners
-                q.put(None)
+        logger.poll()
+        for id, q in queues.items():
+            # Tell each websocket to update listeners
+            await q.put(None)
 
 
-start_new_thread(from_thread, ())
-
+get_event_loop().create_task(from_thread())
