@@ -38,9 +38,9 @@ class SpectralDataHistory extends React.Component {
         xAxisLabelRotate={ utilityFns.isMobile() ? 60 : 0 }
         yAxisType={ BasicBarChart.AXIS_TYPE.VALUE }
         gridStyle={{
-          top: "40px",
-          bottom: utilityFns.isMobile() ? "180px" : "40px",
-          left: "90px",
+          top: "60px",
+          bottom: "40px",
+          left: "30px",
           right: "30px"
         }}
         stack={ true }
