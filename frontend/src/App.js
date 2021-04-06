@@ -18,7 +18,7 @@ function App() {
   let [currentTab, setTab] = useState("Spectral Data");
   let [allData, setAllData] = useState(null);
 
-  const socket = new WebSocket("wss://localhost:3000/last_values_ws");
+  const socket = new WebSocket("wss://localhost:8000/last_values_ws");
   socket.onmessage = function(event) {
     const data = JSON.parse(event.data);
     if (!allData) {
