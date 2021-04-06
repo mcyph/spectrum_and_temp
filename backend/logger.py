@@ -67,6 +67,7 @@ def poll():
             for i_values in values
         })
         csv_writer.writerow(write_me)
+        most_recent_queues[key].appendleft(write_me)
 
     time.sleep(SLEEP_SECONDS)
     num_times[0] += 1
