@@ -23,7 +23,7 @@ class SpectralDataHistory extends React.Component {
         if (!valuesOut[k]) {
           valuesOut[k] = [];
         }
-        valuesOut[k].push([data['datetime'], data[k]]);
+        valuesOut[k].push([new Date(data['datetime']), data[k]]);
       }
     }
     const out = [];
