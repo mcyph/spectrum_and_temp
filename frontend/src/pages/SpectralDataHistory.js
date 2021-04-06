@@ -17,7 +17,7 @@ class SpectralDataHistory extends React.Component {
     const valuesOut = {};
     for (const data of this.props.data) {
       for (const k in data) {
-        if (k === 'datetime') {
+        if (k === 'datetime' || k === '410_violet1_violet') {
           continue
         }
         if (!valuesOut[k]) {
@@ -43,6 +43,7 @@ class SpectralDataHistory extends React.Component {
           left: "90px",
           right: "30px"
         }}
+        stack={ true }
         style={{
           height: utilityFns.isMobile() ? "calc(66vh)" : "calc(38vh - 33px)",
           marginTop: "25px",

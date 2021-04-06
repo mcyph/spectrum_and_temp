@@ -21,7 +21,7 @@ class CurrentSpectralData extends React.Component {
     // Convert to arrays of [[column, value], ...]
     const valuesOut = [];
     for (const k in this.props.data) {
-      if (k === 'datetime') {
+      if (k === 'datetime' || k === '410_violet1_violet') {
         continue
       }
       valuesOut.push([k, this.props.data[k]]);
@@ -39,22 +39,8 @@ class CurrentSpectralData extends React.Component {
           left: "90px",
           right: "30px"
         }}
-        dataZoom={[
-          {
-            show: true,
-            type: "slider",
-            moveHandleSize: 20,
-            moveHandleStyle: {
-              opacity: 0.3
-            },
-            start: 0,
-            end: utilityFns.isMobile() ? 5 : 11
-          }, {
-            type: "inside"
-          }
-        ]}
         style={{
-          height: utilityFns.isMobile() ? "calc(66vh)" : "calc(50vh - 33px)",
+          height: utilityFns.isMobile() ? "calc(80vh)" : "calc(70vh - 33px)",
           marginTop: "25px",
           marginLeft: "auto",
           marginRight: "auto",
