@@ -112,7 +112,7 @@ class BasicBarChart extends Component {
           interval: this.props.xAxisType === BasicBarChart.AXIS_TYPE.CATEGORY ? 0 : 0,
           rotate: this.props.xAxisLabelRotate || 0,
           formatter: function (value) {
-            if ('replace' in value) {
+            if (value && value.replace) {
               return value + '   {' + value.replace(REPLACE_RE, '_') + '| }';
             }
           },
