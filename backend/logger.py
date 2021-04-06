@@ -7,7 +7,7 @@ import as7265x_spectral_data
 import bme280_temp_humidity_data
 import ccs811_air_quality_data
 
-SLEEP_SECONDS = 10
+SLEEP_SECONDS = 0
 IN_MEMORY_CACHE = 6*60
 FLUSH_TO_DISK_EVERY = 3
 
