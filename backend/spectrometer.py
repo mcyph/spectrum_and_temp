@@ -134,19 +134,10 @@ def setDEVSEL(device):
 # Legal input values: n/a
 # Returns: [Int] or [Float]. List of 18 data points
 def reorderData(unsortedData):
-    mappings = [(1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6), (7, 7), (8, 8), (13, 9), (14, 11), (9, 10), (10, 12),
-                (15, 13), (16, 14), (17, 15), (18, 16), (11, 17), (12, 18)]
-    sortedData = [0] * 18
-
-    for pairs in mappings:
-        sortedData[pairs[1] - 1] = unsortedData[
-            pairs[0] - 1]  # -1 is to correct for 1st list member being in position 0
-
     # Convert to wavelength order
     # (410, 435, 460, 485, 510, 535, 560, 585, 610, 645, 680, 705, 730, 760, 810, 860, 900, 940)
     # https://github.com/jdesbonnet/as7265x/blob/master/src/as7265x.h
-    sortedData = [sortedData[i] for i in [12,13,14,15,16,17,    6,7,0,8,1,9,2,3,4,5,10,11]]
-
+    sortedData = [unsortedData[i] for i in [12,13,14,15,16,17,    6,7,0,8,1,9,2,3,4,5,10,11]]
     return sortedData
 
 
