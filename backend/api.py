@@ -1,4 +1,4 @@
-from queue import Queue
+from asyncio import Queue
 from fastapi import FastAPI, WebSocket
 from fastapi.middleware.cors import CORSMiddleware
 from _thread import start_new_thread, allocate_lock, get_ident
@@ -41,7 +41,7 @@ async def websocket_endpoint(websocket: WebSocket):
 
         while True:
             print("GETTING FROM QUEUE...")
-            q.get()
+            await q.get()
             print("SENDING TO SOCKET")
             await websocket.send_json(logger.get_last_values())
     finally:
