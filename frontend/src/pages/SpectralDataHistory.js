@@ -45,7 +45,7 @@ class SpectralDataHistory extends React.Component {
         }}
         stack={ true }
         style={{
-          height: utilityFns.isMobile() ? "calc(66vh)" : "calc(38vh - 33px)",
+          height: utilityFns.isMobile() ? "calc(85vh)" : "calc(70vh - 33px)",
           marginTop: "25px",
           marginLeft: "auto",
           marginRight: "auto",
