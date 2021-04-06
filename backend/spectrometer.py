@@ -142,6 +142,11 @@ def reorderData(unsortedData):
         sortedData[pairs[1] - 1] = unsortedData[
             pairs[0] - 1]  # -1 is to correct for 1st list member being in position 0
 
+    # Convert to wavelength order
+    # (410, 435, 460, 485, 510, 535, 560, 585, 610, 645, 680, 705, 730, 760, 810, 860, 900, 940)
+    # https://github.com/jdesbonnet/as7265x/blob/master/src/as7265x.h
+    sortedData = [sortedData[i] for i in [12,13,14,15,16,17,    6,7,0,8,1,9,2,3,4,5,10,11]]
+
     return sortedData
 
 

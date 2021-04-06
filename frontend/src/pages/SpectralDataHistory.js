@@ -17,7 +17,7 @@ class SpectralDataHistory extends React.Component {
     const valuesOut = {};
     for (const data of this.props.data) {
       for (const k in data) {
-        if (k === 'datetime' || k === '410_violet1_violet') {
+        if (k === 'datetime') {
           continue
         }
         if (!valuesOut[k]) {
