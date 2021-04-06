@@ -2,14 +2,11 @@ import React, { useState } from "react";
 
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import { AppBar, Checkbox, FormControlLabel, Tab, Tabs } from "@material-ui/core";
-
-import FlagIcon from '@material-ui/icons/Flag';
-import PublicIcon from '@material-ui/icons/Public';
-import PhotoSizeSelectSmallIcon from '@material-ui/icons/PhotoSizeSelectSmall';
+import { AppBar, Tab, Tabs } from "@material-ui/core";
 
 import './App.css';
-import { World, StatesProvinces, Countries } from "./pages";
+import SpectralDataHistory from "./pages/SpectralDataHistory";
+import CurrentSpectralData from "./pages/CurrentSpectralData";
 
 function App() {
   // Use a dark theme
@@ -18,8 +15,24 @@ function App() {
   );
 
   // Get the current page element based on the selected tab
-  let [currentTab, setTab] = useState("World");
-  let [per100k, setPer100k] = useState(false);
+  let [currentTab, setTab] = useState("Spectral Data");
+  let [allData, setAllData] = useState(null);
+
+  const socket = new WebSocket("wss://localhost:3000/last_values_ws");
+  socket.onmessage = function(event) {
+    const data = JSON.parse(event.data);
+    if (!allData) {
+      setAllData(data);
+    } else {
+      for (const key in data) {
+        allData[key] = data[key]
+      }
+      setAllData(allData);
+    }
+  }
+
+  const spectralCalibrated = allData['spectral_calibrated']||[];
+  const lastSpectralCalibrated = spectralCalibrated[spectralCalibrated.length-1];
 
   return <>
     <ThemeProvider theme={theme}>
@@ -36,64 +49,28 @@ function App() {
           paddingBottom: "20px",
           margin: 0
         }}>
-          Dave Morrissey's COVID-19 Dashboard Demo
+          Sensor Log Reader
         </h1>
 
         <AppBar position="static">
           <Tabs value={ currentTab }
                 onChange={ (i, value, tab) => {setTab(value)} }
-                aria-label="select the geographic scale"
                 centered>
-            <Tab value="World"
-                 label={ <><PublicIcon />World</> } />
-            <Tab value="Countries"
-                 label={ <><FlagIcon />Countries</> } />
-            {/*<Tab value="Counties/States/Provinces"
-                 label={ <><PhotoSizeSelectSmallIcon />Counties/States/Provinces</> } />*/}
+            <Tab value="Spectral Data"
+                 label={ <>Spectral Data</> } />
+            <Tab value="Environment"
+                 label={ <>Environment</> } />
           </Tabs>
         </AppBar>
 
         {
           // Show only the currently selected tab
           {
-            "World": <>
-                <World name="Confirmed"
-                       apiKey="confirmed"
-                       per100k={ per100k } />
-                <World name="Recovered"
-                       apiKey="recovered"
-                       color="#5C5" />
-                <World name="Deaths"
-                       apiKey="deaths"
-                       color="orange" />
+            "Spectral Data": <>
+              <SpectralDataHistory data={ spectralCalibrated } />
+              <CurrentSpectralData data={ lastSpectralCalibrated } />
             </>,
-            "Countries": <>
-                <div style={{
-                  textAlign: "center",
-                  marginTop: "10px"
-                }}>
-                  <FormControlLabel
-                    label="Show Per 100,000 People"
-                    control={ <Checkbox checked={ per100k }
-                                        onChange={(event)=>{
-                                          setPer100k(event.target.checked);
-                                        }}
-                                        color="secondary" /> } />
-                </div>
-                <Countries name="Confirmed"
-                           apiKey="confirmed"
-                           per100k={ per100k } />
-                <Countries name="Recovered"
-                           apiKey="recovered"
-                           per100k={ per100k }
-                           color="#5C5" />
-                <Countries name="Deaths"
-                           apiKey="deaths"
-                           per100k={ per100k }
-                           color="orange" />
-            </>,
-            "Counties/States/Provinces": <>
-                <StatesProvinces />
+            "Environment": <>
             </>,
           }[currentTab]
         }

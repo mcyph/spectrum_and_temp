@@ -25,13 +25,15 @@ num_times = [0]
 def get_last_values():
     out = {}
     for k in most_recent_queues:
-        out[k] = most_recent_queues[k][-1]
+        out[k] = [most_recent_queues[k][-1]]
     return out
 
 
 def get_time_series():
-    # TODO: output as CSV rather than JSON??
-    raise NotImplementedError()
+    out = {}
+    for k in most_recent_queues:
+        out[k] = list(most_recent_queues[k])
+    return out
 
 
 def poll():
