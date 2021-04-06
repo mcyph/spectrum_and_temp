@@ -84,6 +84,11 @@ class BasicBarChart extends Component {
         step: false,
         color: color,
         animation: false,
+        itemStyle: {
+            color: function (param) {
+                return param.value[1] || color;
+            }
+        },
       });
     }
 

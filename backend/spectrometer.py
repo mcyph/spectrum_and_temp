@@ -138,10 +138,13 @@ def reorderData(unsortedData):
     # (410, 435, 460, 485, 510, 535, 560, 585, 610, 645, 680, 705, 730, 760, 810, 860, 900, 940)
     # https://github.com/jdesbonnet/as7265x/blob/master/src/as7265x.h
     sortedData = [unsortedData[i] for i in [12,13,14,15,16,17,    6,7,0,8,1,9,2,3,4,5,10,11]]
+
+    # Orange/610nm seems to be out by about a factor of 5(?)
     if isinstance(sortedData[8], float):
         sortedData[8] /= 5
     else:
         sortedData[8] //= 5
+
     return sortedData
 
 
