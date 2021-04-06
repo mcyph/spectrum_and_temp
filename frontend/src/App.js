@@ -24,15 +24,18 @@ function App() {
     if (!allData) {
       setAllData(data);
     } else {
+      const newData = JSON.parse(JSON.stringify(allData));
       for (const key in data) {
-        allData[key] = data[key]
+        newData[key] = data[key]
       }
-      setAllData(allData);
+      setAllData(newData);
     }
   }
 
   const spectralCalibrated = allData ? allData['spectral_calibrated'] : [];
   const lastSpectralCalibrated = spectralCalibrated[spectralCalibrated.length-1] || null;
+
+  alert(JSON.stringify(spectralCalibrated));
 
   return <>
     <ThemeProvider theme={theme}>
