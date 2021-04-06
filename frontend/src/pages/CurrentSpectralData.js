@@ -24,7 +24,7 @@ class CurrentSpectralData extends React.Component {
       if (k === 'datetime') {
         continue
       }
-      valuesOut.push([k, [this.props.data[k], k.split('_')[2]]]);
+      valuesOut.push([k, this.props.data[k], k.split('_')[2]]);
     }
 
     return <>
