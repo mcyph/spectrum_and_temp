@@ -15,7 +15,7 @@ class SpectralDataHistory extends React.Component {
   render() {
     // Convert to arrays of [[column, value], ...]
     const valuesOut = {};
-    for (const data of this.data) {
+    for (const data of this.props.data) {
       for (const k in data) {
         if (k === 'datetime') {
           continue

@@ -14,13 +14,17 @@ class CurrentSpectralData extends React.Component {
   }
 
   render() {
+    if (!this.props.data) {
+      return '';
+    }
+
     // Convert to arrays of [[column, value], ...]
     const valuesOut = [];
-    for (const k in this.data) {
+    for (const k in this.props.data) {
       if (k === 'datetime') {
         continue
       }
-      valuesOut.push([k, this.data[k]]);
+      valuesOut.push([k, this.props.data[k]]);
     }
 
     return <>

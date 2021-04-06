@@ -31,8 +31,8 @@ function App() {
     }
   }
 
-  const spectralCalibrated = allData['spectral_calibrated']||[];
-  const lastSpectralCalibrated = spectralCalibrated[spectralCalibrated.length-1];
+  const spectralCalibrated = allData ? allData['spectral_calibrated'] : [];
+  const lastSpectralCalibrated = spectralCalibrated[spectralCalibrated.length-1] || null;
 
   return <>
     <ThemeProvider theme={theme}>
