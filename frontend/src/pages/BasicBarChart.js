@@ -82,7 +82,8 @@ class BasicBarChart extends Component {
         data: dataItem,
         symbol: 'roundRect',
         step: false,
-        color: color
+        color: color,
+        animation: false,
       });
     }
 
