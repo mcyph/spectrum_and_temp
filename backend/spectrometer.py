@@ -179,7 +179,7 @@ def hwVersion():
     device_type = readReg(0x00)
     hw_version = readReg(0x01)
 
-    print(device_type, hw_version)
+    #print(device_type, hw_version)
 
     return ((device_type, hw_version))
 
@@ -229,9 +229,9 @@ def shutterLED(device, state):
 
     try:
         mode = DEVSELbits[device]
-        print("Mode = " + str(mode))
+        #print("Mode = " + str(mode))
     except:
-        print("Bad device name")
+        #print("Bad device name")
         return (False)
 
     setDEVSEL(device)
@@ -255,7 +255,7 @@ def setLEDDriveCurrent(current):
     devices = ["AS72651", "AS72652", "AS72653"]
 
     if current not in [0, 1, 2, 3]:
-        print("Illegal current setting")
+        #print("Illegal current setting")
         return (False)
 
     for device in devices:
@@ -276,7 +276,7 @@ def setIntegrationTime(time):
     devices = ["AS72651", "AS72652", "AS72653"]
 
     if time not in range(0, 255):
-        print("Illegal integration time setting")
+        #print("Illegal integration time setting")
         return (False)
 
     for device in devices:
@@ -285,7 +285,7 @@ def setIntegrationTime(time):
 
     for device in devices:
         setDEVSEL(device)
-        print(readReg(0x05))
+        #print(readReg(0x05))
 
     return True
 
@@ -298,7 +298,7 @@ def setGain(gain):
     devices = ["AS72651", "AS72652", "AS72653"]
 
     if gain not in [0, 1, 2, 3]:
-        print("Illegal gain setting")
+        #print("Illegal gain setting")
         return (False)
 
     for device in devices:
@@ -310,7 +310,7 @@ def setGain(gain):
 
     for device in devices:
         setDEVSEL(device)
-        print(readReg(0x04))
+        #print(readReg(0x04))
 
     return True
 
@@ -334,7 +334,7 @@ def readRAW():
 
     # now reorder the data to be in monotonic frequency order
     output = reorderData(RAWValues)
-    print(output)
+    #print(output)
     return output
 
 
@@ -361,6 +361,6 @@ def readCAL():
 
     # now reorder the data to be in monotonic frequency order
     output = reorderData(CALValues)
-    print(output)
+    #print(output)
     return output
 

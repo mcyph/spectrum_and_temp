@@ -35,8 +35,6 @@ function App() {
   const spectralCalibrated = allData ? allData['spectral_calibrated'] : [];
   const lastSpectralCalibrated = spectralCalibrated[spectralCalibrated.length-1] || null;
 
-  alert(JSON.stringify(allData));
-
   return <>
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -70,8 +68,8 @@ function App() {
           // Show only the currently selected tab
           {
             "Spectral Data": <>
-              <SpectralDataHistory data={ spectralCalibrated } />
               <CurrentSpectralData data={ lastSpectralCalibrated } />
+              <SpectralDataHistory data={ spectralCalibrated } />
             </>,
             "Environment": <>
             </>,
