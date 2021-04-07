@@ -86,7 +86,7 @@ class BasicBarChart extends Component {
         animation: false,
         itemStyle: {
             color: function (param) {
-                return param.value[2] || color;
+                return param.value[2] || color || 'blue';
             }
         },
         encode: {
