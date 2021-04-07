@@ -87,20 +87,14 @@ function App() {
                   ['relative_humidity', bme280.relative_humidity],
                   ['pressure', bme280.pressure],
                   ['altitude', bme280.altitude] */}
-              <h2>Temperature</h2>
               <SingleValueHistory keyName="temp" data={ tempHumidity } />
-              <h2>Relative Humidity</h2>
               <SingleValueHistory keyName="relative_humidity" data={ tempHumidity } />
-              <h2>Pressure</h2>
               <SingleValueHistory keyName="pressure" data={ tempHumidity } />
-              <h2>Altitude</h2>
               <SingleValueHistory keyName="altitude" data={ tempHumidity } />
 
               {/* ['eco2', ccs811.eco2],
                   ['tvoc', ccs811.tvoc] */}
-              <h2>ECO2</h2>
               <SingleValueHistory keyName="eco2" data={ airQuality } />
-              <h2>TVOC</h2>
               <SingleValueHistory keyName="tvoc" data={ airQuality } />
             </>,
           }[currentTab]
