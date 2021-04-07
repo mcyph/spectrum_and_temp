@@ -26,7 +26,7 @@ class SingleValueHistory extends React.Component {
     }
     const out = [];
     for (const k in valuesOut) {
-      out.push([k, valuesOut[k], k])
+      out.push([k, valuesOut[k]])
     }
 
     return <>
@@ -47,7 +47,9 @@ class SingleValueHistory extends React.Component {
           marginTop: "25px",
           marginLeft: "auto",
           marginRight: "auto",
-          maxWidth: "1000px"
+          width: "33vw",
+          maxWidth: "1000px",
+          float: "left",
         }}
         data={ out }
       />
