@@ -28,7 +28,7 @@ function App() {
     } else {
       const newData = JSON.parse(JSON.stringify(allData));
       for (const key in data) {
-        newData[key] = data[key]
+        newData[key] = newData[key].concat(data[key]);
       }
       setAllData(newData);
     }
