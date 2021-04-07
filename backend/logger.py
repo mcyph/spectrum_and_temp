@@ -5,7 +5,7 @@ from collections import deque
 
 import as7265x_spectral_data
 import bme280_temp_humidity_data
-import ccs811_air_quality_data
+#import ccs811_air_quality_data
 
 SLEEP_SECONDS = 0
 IN_MEMORY_CACHE = 6*60
@@ -41,7 +41,7 @@ def poll():
         "spectral_raw": as7265x_spectral_data.get_raw_values(),
         "spectral_calibrated": as7265x_spectral_data.get_calibrated_values(),
         "temp_humidity": bme280_temp_humidity_data.get_values(),
-        "air_quality": ccs811_air_quality_data.get_values()
+        #"air_quality": ccs811_air_quality_data.get_values()
     }
 
     for key, values in values_dict.items():

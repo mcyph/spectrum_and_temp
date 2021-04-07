@@ -94,8 +94,8 @@ function App() {
 
               {/* ['eco2', ccs811.eco2],
                   ['tvoc', ccs811.tvoc] */}
-              <SingleValueHistory keyName="eco2" data={ airQuality } />
-              <SingleValueHistory keyName="tvoc" data={ airQuality } />
+              {/*<SingleValueHistory keyName="eco2" data={ airQuality } />
+              <SingleValueHistory keyName="tvoc" data={ airQuality } />*/}
             </>,
           }[currentTab]
         }
