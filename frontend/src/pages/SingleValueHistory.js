@@ -41,13 +41,12 @@ class SingleValueHistory extends React.Component {
           left: "30px",
           right: "30px"
         }}
-        stack={ true }
         style={{
           height: utilityFns.isMobile() ? "calc(85vh)" : "calc(80vh - 33px)",
           marginTop: "25px",
           marginLeft: "auto",
           marginRight: "auto",
-          width: "29vw",
+          width: "31vw",
           maxWidth: "1000px",
           float: "left",
         }}
