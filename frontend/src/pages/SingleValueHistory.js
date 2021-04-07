@@ -21,7 +21,7 @@ class SingleValueHistory extends React.Component {
         if (!valuesOut[k]) {
           valuesOut[k] = [];
         }
-        valuesOut[k].push([new Date(data['datetime']), data[k]]);
+        valuesOut[k].push([new Date(data['datetime']), data[k], 'blue']);
       }
     }
     const out = [];
