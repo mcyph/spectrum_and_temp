@@ -47,7 +47,7 @@ class SingleValueHistory extends React.Component {
           marginTop: "25px",
           marginLeft: "auto",
           marginRight: "auto",
-          width: "33vw",
+          width: "29vw",
           maxWidth: "1000px",
           float: "left",
         }}
