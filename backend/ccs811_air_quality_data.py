@@ -11,11 +11,25 @@ ccs811 = adafruit_ccs811.CCS811(i2c, 0x5B)
 
 
 def get_values():
-    # Wait for the sensor to be ready
-    while not ccs811.data_ready:
-        time.sleep(0.01)
+    time.sleep(0.5)
+    try:
+        # Wait for the sensor to be ready
+        while not ccs811.data_ready:
+            time.sleep(0.01)
 
-    return [
-        ['eco2', ccs811.eco2],
-        ['tvoc', ccs811.tvoc]
-    ]
+        return [
+            ['eco2', ccs811.eco2],
+            ['tvoc', ccs811.tvoc]
+        ]
+    except OSError:
+        # Try to reset+try again if there are problems reading
+        ccs811.reset()
+
+        # Wait for the sensor to be ready
+        while not ccs811.data_ready:
+            time.sleep(0.01)
+
+        return [
+            ['eco2', ccs811.eco2],
+            ['tvoc', ccs811.tvoc]
+        ]

@@ -1,5 +1,6 @@
 # https://github.com/adafruit/Adafruit_CircuitPython_BME280/blob/master/adafruit_bme280.py
 
+import time
 import board
 import busio
 import adafruit_bme280
@@ -14,9 +15,21 @@ bme280.sea_level_pressure = 1013.25
 
 
 def get_values():
-    return [
-        ['temp', bme280.temperature],
-        ['relative_humidity', bme280.relative_humidity],
-        ['pressure', bme280.pressure],
-        ['altitude', bme280.altitude]
-    ]
+    time.sleep(0.5)
+    try:
+        return [
+            ['temp', bme280.temperature],
+            ['relative_humidity', bme280.relative_humidity],
+            ['pressure', bme280.pressure],
+            ['altitude', bme280.altitude]
+        ]
+    except OSError:
+        bme280._reset()
+
+        return [
+            ['temp', bme280.temperature],
+            ['relative_humidity', bme280.relative_humidity],
+            ['pressure', bme280.pressure],
+            ['altitude', bme280.altitude]
+        ]
+
