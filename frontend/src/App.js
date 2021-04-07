@@ -7,6 +7,7 @@ import { AppBar, Tab, Tabs } from "@material-ui/core";
 import './App.css';
 import SpectralDataHistory from "./pages/SpectralDataHistory";
 import CurrentSpectralData from "./pages/CurrentSpectralData";
+import SingleValueHistory from "./pages/SingleValueHistory";
 
 let socket = new WebSocket("ws://localhost:8000/last_values_ws");
 
@@ -42,6 +43,8 @@ function App() {
 
   const spectralCalibrated = allData ? allData['spectral_calibrated'] : [];
   const lastSpectralCalibrated = spectralCalibrated[spectralCalibrated.length-1] || null;
+  const tempHumidity = allData ? allData['temp_humidity'] : [];
+  const airQuality = allData ? allData['air_quality'] : [];
 
   return <>
     <ThemeProvider theme={theme}>
@@ -80,6 +83,25 @@ function App() {
               <SpectralDataHistory data={ spectralCalibrated } />
             </>,
             "Environment": <>
+              {/* ['temp', bme280.temperature],
+                  ['relative_humidity', bme280.relative_humidity],
+                  ['pressure', bme280.pressure],
+                  ['altitude', bme280.altitude] */}
+              <h2>Temperature</h2>
+              <SingleValueHistory keyName="temp" data={ tempHumidity } />
+              <h2>Relative Humidity</h2>
+              <SingleValueHistory keyName="relative_humidity" data={ tempHumidity } />
+              <h2>Pressure</h2>
+              <SingleValueHistory keyName="pressure" data={ tempHumidity } />
+              <h2>Altitude</h2>
+              <SingleValueHistory keyName="altitude" data={ tempHumidity } />
+
+              {/* ['eco2', ccs811.eco2],
+                  ['tvoc', ccs811.tvoc] */}
+              <h2>ECO2</h2>
+              <SingleValueHistory keyName="eco2" data={ airQuality } />
+              <h2>TVOC</h2>
+              <SingleValueHistory keyName="tvoc" data={ airQuality } />
             </>,
           }[currentTab]
         }

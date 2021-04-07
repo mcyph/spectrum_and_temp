@@ -21,14 +21,21 @@ def readCAL()
 """
 
 
+spectrometer.init()
+#print(spectrometer.hwVersion())
+spectrometer.setIntegrationTime(254)
+spectrometer.setGain(3)
+spectrometer.setBlueLED(False)
+
+
 VALUE_TYPES = [
     [410, 'violet1', 'violet'],
     [435, 'violet2', 'violet'],
     [460, 'blue1', 'blue'],
     [485, 'blue2', 'blue'],
-    [510, 'green1', 'green'],
-    [535, 'green2', 'green'],
-    [560, 'green3', 'green'],
+    [510, 'cyan', 'cyan'],
+    [535, 'green1', 'green'],
+    [560, 'green2', 'green'],
     [585, 'yellow', 'yellow'],
     [610, 'orange', 'orange'],
     [645, 'red1', 'red'],
@@ -55,12 +62,3 @@ def get_calibrated_values():
     return [VALUE_TYPES[x]+[value]
             for x, value
             in enumerate(calibrated_values)]
-
-
-spectrometer.init()
-spectrometer.hwVersion()
-print(get_raw_values())
-print(get_calibrated_values())
-spectrometer.setIntegrationTime(254)
-spectrometer.setGain(3)
-spectrometer.setBlueLED(False)
