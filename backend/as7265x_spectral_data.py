@@ -29,24 +29,24 @@ spectrometer.setBlueLED(False)
 
 
 VALUE_TYPES = [
-    [410, 'violet1', 'violet'],
+    [410, 'violet1', 'darkviolet'],
     [435, 'violet2', 'violet'],
-    [460, 'blue1', 'blue'],
+    [460, 'blue1', 'darkblue'],
     [485, 'blue2', 'blue'],
     [510, 'cyan', 'cyan'],
-    [535, 'green1', 'green'],
-    [560, 'green2', 'green'],
+    [535, 'green1', 'lightgreen'],
+    [560, 'green2', 'darkgreen'],
     [585, 'yellow', 'yellow'],
     [610, 'orange', 'orange'],
-    [645, 'red1', 'red'],
+    [645, 'red1', 'orangered'],
     [680, 'red2', 'red'],
-    [705, 'red3', 'red'],
-    [730, 'red4', 'red'],
-    [760, 'ir1', 'ir'],
-    [810, 'ir2', 'ir'],
-    [860, 'ir3', 'ir'],
-    [900, 'ir4', 'ir'],
-    [940, 'ir5', 'ir'],
+    [705, 'red3', 'firebrick'],
+    [730, 'red4', 'darkred'],
+    [760, 'ir1', 'maroon'],
+    [810, 'ir2', 'maroon'],
+    [860, 'ir3', 'maroon'],
+    [900, 'ir4', 'maroon'],
+    [940, 'ir5', 'maroon'],
 ]
 
 
